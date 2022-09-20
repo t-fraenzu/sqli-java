@@ -13,7 +13,12 @@ JDK: 17 (any openJDK)
 	unzip into sqli-java/wildfly
 	setup wildfly within intellij as new debug configuration
 	
-		
+	setup jdbc mysql datasource within wildfly instace:
+https://reachmnadeem.wordpress.com/2021/05/13/install-and-configure-mysql-jdbc-driver-on-jboss-wildfly/	
+
+
+mysql setup
+https://www.digitalocean.com/community/tutorials/java-datasource-jdbc-datasource-example#java-datasource
 
 
 
