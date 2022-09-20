@@ -39,6 +39,8 @@ create management console user for verify datasource
 add admin user to access / verify over management console (user / password)
 
     add-user.bat admin admin
+    
+    http://127.0.0.1:9990/console
 
 
 ### Installing mysql container
@@ -50,3 +52,10 @@ see configuration of mysql service  myphpAdmin in mysql_stack.yml
     docker stack deploy -c mysql_stack.yml sqldeploy
 
 
+
+
+### Sources of instruction and setup:
+
+wildfly: https://reachmnadeem.wordpress.com/2021/05/13/install-and-configure-mysql-jdbc-driver-on-jboss-wildfly/
+mysql image: > https://towardsdatascience.com/how-to-run-mysql-and-phpmyadmin-using-docker-17dfe107eab7
+JEE: https://www.digitalocean.com/community/tutorials/java-datasource-jdbc-datasource-example#jdbc-datasource
