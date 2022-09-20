@@ -1,26 +1,52 @@
 # Excercises voulenaribilty java - jakarta EE
 
-current Project setup:
+Needed Software:
 
 IDE:  IntelliJ V2022.2
-Docker: podman
+Docker: podman / docker 
 JDK: 17 (any openJDK)
+Wildfly: 26.1.2
+
+### Installing Wildfly
+    download distribution https://www.wildfly.org/downloads/
+	unzip into /sqli-java/wildfly
+
+start service
+
+    sqli-java/wildfly/bin/standalone.bat
+
+open jboss-cli 
+
+    jboss-cli -c
+
+within jboss-cli add jdbcdriver module **(replace driver resource with your own path)**
+
+    module add --name=com.mysql.driver8  --dependencies=javax.api,javax.transaction.api --resources=C:\git\sqli-java\db\mysql\mysql-connector-java-8.0.30.jar
+
+restart wildfly -> create driver
+
+    /subsystem=datasources/jdbc-driver=mysql/:add(driver-module-name=com.mysql.driver8,driver-name=mysql,driver-class-name=com.mysql.jdbc.Driver)
+
+create datasource -> **password & target mysql service ist passed here**
+
+    data-source add --jndi-name=java:/MySqli --name=MySqlPool --connection-url=jdbc:mysql://localhost:3307/jakartajdbc --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
+
+leave jboss-cli
+create management console user for verify datasource
+    
+    pwd -> wildfly/bin
+
+add admin user to access / verify over management console (user / password)
+
+    add-user.bat admin admin
 
 
--- optional (if local debugging is required
-    wildfly 26.1.2:
-    https://www.wildfly.org/downloads/
-	unzip into sqli-java/wildfly
-	setup wildfly within intellij as new debug configuration
-	
-	setup jdbc mysql datasource within wildfly instace:
-https://reachmnadeem.wordpress.com/2021/05/13/install-and-configure-mysql-jdbc-driver-on-jboss-wildfly/	
+### Installing mysql container
 
+see configuration of mysql service  myphpAdmin in mysql_stack.yml
 
-mysql setup
-https://www.digitalocean.com/community/tutorials/java-datasource-jdbc-datasource-example#java-datasource
-
-
-
+    cd /sqli-java/db
+    docker network create -d overlay --attachable sqli-network
+    docker stack deploy -c mysql_stack.yml sqldeploy
 
 
