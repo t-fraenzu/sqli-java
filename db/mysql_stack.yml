@@ -1,0 +1,34 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3307:3306
+      - 33070:33060
+    environment:
+      MYSQL_ROOT_PASSWORD: rootPW
+      MYSQL_DATABASE: jakartajdbc
+      MYSQL_USER: jakartaUser
+      MYSQL_PASSWORD: jakartaPassword
+    networks:
+      - sqli-network
+
+  db-ui:
+    image: phpmyadmin:5
+    ports: 
+      - 8085:80
+    networks:
+      - sqli-network
+
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      
+      
+networks:
+    sqli-network:
+        external: true
