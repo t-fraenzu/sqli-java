@@ -52,6 +52,25 @@ see configuration of mysql service  myphpAdmin in mysql_stack.yml
     docker network create -d overlay --attachable sqli-network
     docker stack deploy -c mysql_stack.yml sqldeploy
 
+### orm config
+
+src/main/resources/META-INF/perstistence.xml
+
+    <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+    http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1" >
+        <persistence-unit name="jakartaJpa" transaction-type="JTA">
+            <jta-data-source>java:/MySqliJpa</jta-data-source>
+            <validation-mode>CALLBACK</validation-mode>
+            <properties>
+                <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+                <!--property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+                <property name="hibernate.hbm2ddl.auto" value="create-drop"/-->
+            </properties>
+        </persistence-unit>
+    </persistence>
 
 ### setup wilfly run config in intellij
 

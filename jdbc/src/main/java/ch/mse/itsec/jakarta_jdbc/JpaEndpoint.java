@@ -43,10 +43,14 @@ public class JpaEndpoint {
     }
 
     private static List<Employee> untypedQuery(SearchRequest sr, EntityManager entityManager) {
+        //entityManager.createNativeQuery("SELECT * FROM Employee WHERE ename = " + sr.queryName)
+
         List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e WHERE e.ename LIKE :ename or e.eid = :eid")
                 .setParameter("ename", sr.queryName)
                 .setParameter("eid", sr.queryId).getResultList();
         return employees;
+
+
     }
 
     private List<Employee> criteriaBuilder(SearchRequest searchRequest) {
