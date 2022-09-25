@@ -7,7 +7,7 @@ import javax.persistence.Persistence;
 public class EntityManagerfactory {
 
     public static EntityManager createEntityManager() {
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Hibernate_JPA");
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("jakartaJpa");
         EntityManager entitymanager = emfactory.createEntityManager();
         return entitymanager;
     }

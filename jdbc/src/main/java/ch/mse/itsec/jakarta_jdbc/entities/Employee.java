@@ -5,7 +5,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@Table
+@Table(name = "Employee")
 @XmlRootElement
 public class Employee {
     @Id

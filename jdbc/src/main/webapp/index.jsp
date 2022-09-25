@@ -29,7 +29,7 @@ endpoint Type:
         const url='/jakarta-jdbc-1.0-SNAPSHOT/api/' + endpointType;
         xmlhttp.open("POST", url);
         xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xmlhttp.send(JSON.stringify({ "queryName":  document.getElementById("queryName").value, "queryId":  document.getElementById("queryId").value }));
+        xmlhttp.send(JSON.stringify({ "queryName":  document.getElementById("queryName").value, "queryId":  parseInt(document.getElementById("queryId").value) }));
 
         xmlhttp.send();
 

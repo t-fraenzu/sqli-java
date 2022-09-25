@@ -14,6 +14,8 @@ services:
       MYSQL_DATABASE: jakartajdbc
       MYSQL_USER: jakartaUser
       MYSQL_PASSWORD: jakartaPassword
+    volumes: 
+      - ./init:/docker-entrypoint-initdb.d
     networks:
       - sqli-network
 

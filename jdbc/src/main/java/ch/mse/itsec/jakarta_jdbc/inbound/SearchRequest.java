@@ -6,5 +6,5 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SearchRequest {
 
     public String queryName;
-    public String queryId;
+    public int queryId;
 }

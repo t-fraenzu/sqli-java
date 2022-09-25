@@ -6,4 +6,12 @@
     <persistence-unit name="default">
 
     </persistence-unit>
+    <persistence-unit name="jakartaJpa">
+        <jta-data-source>java:/MySqli</jta-data-source>
+        <class>ch.mse.itsec.jakarta_jdbc.entities.Employee</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql"     value="true" />
+        </properties>
+    </persistence-unit>
 </persistence>

@@ -30,6 +30,7 @@ restart wildfly -> create driver
 create datasource -> **password & target mysql service ist passed here**
 
     data-source add --jndi-name=java:/MySqli --name=MySqlPool --connection-url=jdbc:mysql://localhost:3307/jakartajdbc --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
+     data-source add --jndi-name=java:/MySqliJpa --name=MySqlPool2 --connection-url=jdbc:mysql://localhost:3307/jakartajpa --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
 
 leave jboss-cli
 create management console user for verify datasource

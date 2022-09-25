@@ -1,40 +1,38 @@
 package ch.mse.itsec.jakarta_jdbc;
 
 
+import ch.mse.itsec.jakarta_jdbc.datasource.EntityManagerfactory;
 import ch.mse.itsec.jakarta_jdbc.entities.Employee;
 import ch.mse.itsec.jakarta_jdbc.inbound.SearchRequest;
 import ch.mse.itsec.jakarta_jdbc.outbound.JdbcResult;
+import ch.mse.itsec.jakarta_jdbc.outbound.JpaResult;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.io.Console;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-@Path("/jdbc")
-public class JdbcEndpoint {
+@Path("/jpa")
+public class JpaEndpoint {
 
     @POST
     @Produces("application/json")
-    public JdbcResult getEmployers(SearchRequest sr) throws SQLException, NamingException {
+    public JpaResult getEmployers(SearchRequest sr) throws SQLException, NamingException {
         if(sr.queryName != null && !sr.queryName.isBlank()){
 
         }
-
-        JdbcResult result = new JdbcResult();
-        result.prepStatementResult = getEmployeesPrepStatement(sr);
-        result.statementResult = getEmployeesDirty(sr);
+        EntityManager entityManager = EntityManagerfactory.createEntityManager();
+        List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e WHERE e.ename LIKE :ename")
+                .setParameter("ename", "paramName").getResultList();
+        JpaResult result = new JpaResult();
+        result.criteriaQuery = getEmployeesPrepStatement(sr);
         return result;
     }
 

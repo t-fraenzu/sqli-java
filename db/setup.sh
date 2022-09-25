@@ -15,6 +15,8 @@ jboss-cli -c
 # creates datasource for driver
 data-source add --jndi-name=java:/MySqli --name=MySqlPool --connection-url=jdbc:mysql://localhost:3307/jakartajdbc --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
 
+data-source add --jndi-name=java:/MySqliJpa --name=MySqlPool2 --connection-url=jdbc:mysql://localhost:3307/jakartajpa --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
+
 # add admin user to access / verify over management console (user / password)
 add-user.bat admin admin
 
