@@ -7,7 +7,7 @@
 
     </persistence-unit>
     <persistence-unit name="jakartaJpa">
-        <jta-data-source>java:/MySqli</jta-data-source>
+        <jta-data-source>java:/MySqliJpa</jta-data-source>
         <class>ch.mse.itsec.jakarta_jdbc.entities.Employee</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
