@@ -1,4 +1,4 @@
-# Excercises voulenaribilty java - jakarta EE
+# Exercises vulenaribilty java - jakarta EE
 
 Needed Software:
 
