@@ -11,6 +11,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 import javax.sql.DataSource;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -29,11 +35,35 @@ public class JpaEndpoint {
 
         }
         EntityManager entityManager = EntityManagerfactory.createEntityManager();
-        List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e WHERE e.ename LIKE :ename")
-                .setParameter("ename", "paramName").getResultList();
+        List<Employee> employees = untypedQuery(sr, entityManager);
         JpaResult result = new JpaResult();
-        result.criteriaQuery = getEmployeesPrepStatement(sr);
+        result.untypedQuery = employees;
+        result.criteriaQuery = criteriaBuilder(sr);
         return result;
+    }
+
+    private static List<Employee> untypedQuery(SearchRequest sr, EntityManager entityManager) {
+        List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e WHERE e.ename LIKE :ename or e.eid = :eid")
+                .setParameter("ename", sr.queryName)
+                .setParameter("eid", sr.queryId).getResultList();
+        return employees;
+    }
+
+    private List<Employee> criteriaBuilder(SearchRequest searchRequest) {
+        EntityManager entityManager = EntityManagerfactory.createEntityManager();
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Employee> cq = cb.createQuery(Employee.class);
+        Root<Employee> rootEntry = cq.from(Employee.class);
+
+        Metamodel m = entityManager.getMetamodel();
+        EntityType<Employee> employee_ = m.entity(Employee.class);
+        cq.select(rootEntry).where(
+                cb.or(
+                    cb.equal(rootEntry.get("eid"), searchRequest.queryId),
+                    cb.like(rootEntry.get("ename"), searchRequest.queryName )));
+
+        TypedQuery<Employee> query = entityManager.createQuery(cq);
+        return query.getResultList();
     }
 
     private List<Employee> getEmployeesDirty(SearchRequest sr) throws NamingException, SQLException {

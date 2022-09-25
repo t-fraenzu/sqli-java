@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int eid;
-    private String ename;
-    private double salary;
-    private String deg;
+    protected int eid;
+    protected String ename;
+    protected double salary;
+    protected String workfunction;
 
-    public Employee(int eid, String ename, double salary, String deg) {
+    public Employee(int eid, String ename, double salary, String workfunction) {
         this.eid = eid;
         this.ename = ename;
         this.salary = salary;
-        this.deg = deg;
+        this.workfunction = workfunction;
     }
 
     public Employee( ) {
@@ -50,16 +50,16 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getDeg( ) {
-        return deg;
+    public String getWorkfunction( ) {
+        return workfunction;
     }
 
-    public void setDeg(String deg) {
-        this.deg = deg;
+    public void setWorkfunction(String deg) {
+        this.workfunction = deg;
     }
 
     @Override
     public String toString() {
-        return "Employee [eid=" + eid + ", ename=" + ename + ", salary=" + salary + ", deg=" + deg + "]";
+        return "Employee [eid=" + eid + ", ename=" + ename + ", salary=" + salary + ", deg=" + workfunction + "]";
     }
 }

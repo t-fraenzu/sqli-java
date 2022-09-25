@@ -53,6 +53,12 @@ see configuration of mysql service  myphpAdmin in mysql_stack.yml
     docker stack deploy -c mysql_stack.yml sqldeploy
 
 
+### setup wilfly run config in intellij
+
+![config1_setup](/doc/startupConfig.PNG)
+![config1_wilfly](/doc/wilfly_config.PNG)
+![config1_deployment](/doc/deployment_config.PNG)
+![config1_start](/doc/local_debugging.PNG)
 
 
 ### Sources of instruction and setup:

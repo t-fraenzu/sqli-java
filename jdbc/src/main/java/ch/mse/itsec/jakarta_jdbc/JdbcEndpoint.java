@@ -51,13 +51,13 @@ public class JdbcEndpoint {
 
 
             stmt = con.createStatement();
-            rs = stmt.executeQuery("select empid, name from Employee " +
-                                    "where name like '%" + sr.queryName + "%' or empid = " + sr.queryId);
+            rs = stmt.executeQuery("select eid, ename from Employee " +
+                                    "where ename like '%" + sr.queryName + "%' or eid = " + sr.queryId);
 
             List<Employee> employeeList = new ArrayList<>();
             while (rs.next()) {
-                int empid = rs.getInt("empid");
-                String name = rs.getString("name");
+                int empid = rs.getInt("eid");
+                String name = rs.getString("ename");
                 employeeList.add(new Employee(empid, name, 0, "test"));
             }
             return employeeList;
@@ -95,15 +95,15 @@ public class JdbcEndpoint {
 
             con = ds.getConnection();
 
-            prepStmt = con.prepareStatement("select empid, name from Employee where name like ? or empid = ?");
+            prepStmt = con.prepareStatement("select eid, ename from Employee where ename like ? or eid = ?");
             prepStmt.setString(1, sr.queryName);
             prepStmt.setInt(2, sr.queryId);
             rs = prepStmt.executeQuery();
 
             List<Employee> employeeList = new ArrayList<>();
             while (rs.next()) {
-                int empid = rs.getInt("empid");
-                String name = rs.getString("name");
+                int empid = rs.getInt("eid");
+                String name = rs.getString("ename");
                 employeeList.add(new Employee(empid, name, 0, "test"));
             }
             return employeeList;
