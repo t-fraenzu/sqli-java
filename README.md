@@ -52,6 +52,12 @@ see configuration of mysql service  myphpAdmin in mysql_stack.yml
     docker network create -d overlay --attachable sqli-network
     docker stack deploy -c mysql_stack.yml sqldeploy
 
+MySql port is exposed over localhost:3307, the phpMyAdmin GUI for MySql Db is reachable over [localhost:8085](http://localhost:8085)
+user password can be extracted from /db/mysql_stack.yml
+
+The db will be automatically setup with the init.sql script and should look like this:
+![myPhpAdmin](/doc/phpmyadmin.PNG)
+
 ### orm config
 
 src/main/resources/META-INF/perstistence.xml

@@ -2,25 +2,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>JSP - Jakarta EE Database access</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
-
-Query employees: name: <input type="text" id="queryName"> id: <input type="text" id="queryId">
+<a href="hello-servlet">go to other servlet</a>
 <br />
-
-endpoint Type:
+<br/>
+<div>
+Query employees: name: <input type="text" id="queryName"> id: <input type="text" id="queryId">
+</div>
+    <br />
+<div>
+Access Type:
 
 <select id="endpoint-type">
     <option value="jdbc">jdbc-source</option>
     <option value="jpa">jpa-method</option>
 </select>
+</div>
 <br/>
 <button onclick="requestEmployees()">search</button>
+<div>
+    <h3>Response Result:</h3><br/>
+    <p style="border: 2px;" id="resultParagraph">
+
+    </p>
+</div>
 
 <script>
     function requestEmployees(){
@@ -31,10 +39,11 @@ endpoint Type:
         xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xmlhttp.send(JSON.stringify({ "queryName":  document.getElementById("queryName").value, "queryId":  parseInt(document.getElementById("queryId").value) }));
 
-        xmlhttp.send();
-
         xmlhttp.onreadystatechange = (e) => {
-            console.log(Http.responseText)
+            console.log("readyStateChanged");
+
+            document.getElementById("resultParagraph").innerHTML = xmlhttp.responseText;
+            console.log(xmlhttp.responseText)
             console.log(e);
         }
     }
