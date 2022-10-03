@@ -1,4 +1,19 @@
-## Jakarta EE overview
+## Jakarta EE overview (prior 2019: Java EE)
+
+### What language?
+Jakarata EE is in Java. Last version is Java 19.
+
+### MVC?
+JEE do not require a particular design pattern/architecture but MVC is of course recommended.
+
+Controller --> Servlet (Java classes which handle requests from the client and send a response)
+
+Model --> Java Beans (Java classes)
+
+View --> JSP (HTML pages)
+
+Some MVC frameworks: JSF, Spring, Hibernate.
+
 ![jakarta overview](jakarta_overview.drawio.png)
 
 ### avoid sqli
