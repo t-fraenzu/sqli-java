@@ -1,51 +1,5 @@
-## Jakarta EE overview (prior 2019: Java EE)
-
-### What language?
-Jakarata EE is in Java. Last version is Java 19.
-
-### MVC?
-JEE do not require a particular design pattern/architecture but MVC is of course recommended.
-
-Controller --> Servlet (Java classes which handle requests from the client and send a response)
-
-Model --> Java Beans (Java classes)
-
-View --> JSP (HTML pages)
-
-Some MVC frameworks: JSF, Spring, Hibernate.
-
+## Jakarta EE overview
 ![jakarta overview](jakarta_overview.drawio.png)
-
-### DB connection / object setup
-
-![db_connSetup](DbEntitySetup1.PNG)
-![db_connSetup](DbEntitySetup2.PNG)
-
-wildfly setup of datasource: (wildfly/standalone/configuration/standalone.xml)
-
-               <datasources>
-                <datasource jndi-name="java:/MySqli" pool-name="MySqlPool">
-                    <connection-url>jdbc:mysql://localhost:3307/jakartajdbc</connection-url>
-                    <driver>mysql</driver>
-                    <security>
-                        <user-name>jakartaUser</user-name>
-                        <password>jakartaPassword</password>
-                    </security>
-                </datasource>
-                <datasource jndi-name="java:/MySqliJpa" pool-name="MySqlPool2">
-                    <connection-url>jdbc:mysql://localhost:3307/jakartajpa</connection-url>
-                    <driver>mysql</driver>
-                    <security>
-                        <user-name>jakartaUser</user-name>
-                        <password>jakartaPassword</password>
-                    </security>
-                </datasource>
-                <drivers>
-                    <driver name="mysql" module="com.mysql.driver8">
-                        <driver-class>com.mysql.jdbc.Driver</driver-class>
-                    </driver>
-                </drivers>
-            </datasources>
 
 ### avoid sqli
 
