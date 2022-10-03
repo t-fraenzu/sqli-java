@@ -18,8 +18,15 @@ Some MVC frameworks: JSF, Spring, Hibernate.
 
 ### DB connection / object setup
 
-![db_connSetup](DbEntitySetup1.PNG)
+concept
 ![db_connSetup](DbEntitySetup2.PNG)
+
+Entity class setup
+![db_connSetup](DbEntitySetup1.PNG)
+
+configuration within wildfly admin console:
+![db_connSetup](DbEntitySetup3.PNG)
+![db_connSetup](DbEntitySetup4.PNG)
 
 wildfly setup of datasource: (wildfly/standalone/configuration/standalone.xml)
 
@@ -46,6 +53,12 @@ wildfly setup of datasource: (wildfly/standalone/configuration/standalone.xml)
                     </driver>
                 </drivers>
             </datasources>
+
+### update model & data
+existing properties on the hibernate framework can autogenerate the db schema. but incremental updates are not possible. therefor exists the framework Flyway
+how to setup and use: https://vladmihalcea.com/flyway-database-schema-migrations/
+
+So the Entity class refactorings do not directly impact the database schema. But the developer must take care that database schema and entity classes are in sync with each other.
 
 ### avoid sqli
 

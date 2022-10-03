@@ -91,4 +91,5 @@ src/main/resources/META-INF/perstistence.xml
 wildfly: https://reachmnadeem.wordpress.com/2021/05/13/install-and-configure-mysql-jdbc-driver-on-jboss-wildfly/
 mysql image: > https://towardsdatascience.com/how-to-run-mysql-and-phpmyadmin-using-docker-17dfe107eab7
 JEE: https://www.digitalocean.com/community/tutorials/java-datasource-jdbc-datasource-example#jdbc-datasource
-JPA-CriteriaBuilder: https://www.baeldung.com/hibernate-criteria-queries
+JPA-CriteriaBuilder: https://www.baeldung.com/hibernate-criteria-queries log SQL statements: https://vladmihalcea.com/the-best-way-to-log-jdbc-statements/ 
+database migration: https://vladmihalcea.com/flyway-database-schema-migrations/
