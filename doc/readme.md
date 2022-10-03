@@ -19,14 +19,14 @@ Some MVC frameworks: JSF, Spring, Hibernate.
 ### DB connection / object setup
 
 concept
-![db_connSetup](DbEntitySetup2.PNG)
+![db_connSetup1](DbEntitySetup2.png)
 
 Entity class setup
-![db_connSetup](DbEntitySetup1.PNG)
+![db_connSetup2](DbEntitySetup1.PNG)
 
 configuration within wildfly admin console:
-![db_connSetup](DbEntitySetup3.PNG)
-![db_connSetup](DbEntitySetup4.PNG)
+![db_connSetup3](DbEntitySetup3.png)
+![db_connSetup4](DbEntitySetup4.png)
 
 wildfly setup of datasource: (wildfly/standalone/configuration/standalone.xml)
 
