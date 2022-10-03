@@ -74,46 +74,50 @@
             }
 
             cleanElements();
-            var searchResult = JSON.parse(xmlhttp.responseText);
+            try {
+                var searchResult = JSON.parse(xmlhttp.responseText);
 
-            function addResultToTable(searchResult, tablename) {
-                var text = "<tr><th style='width: 35px;'>Id</th><th style='width: 35px;'>Name</th><th style='width: 35px;'>Salary</th><th style='width: 35px;'>workFunction</th></tr>";
-                for (let x in searchResult) {
-                    text += "<tr><td>" + searchResult[x].eid + "</td>";
-                    text += "<td>" + searchResult[x].ename + "</td>";
-                    text += "<td>" + searchResult[x].salary + "</td>";
-                    text += "<td>" + searchResult[x].workfunction + "</td>";
-                    text += "</tr>"
+                function addResultToTable(searchResult, tablename) {
+                    var text = "<tr><th style='width: 35px;'>Id</th><th style='width: 35px;'>Name</th><th style='width: 35px;'>Salary</th><th style='width: 35px;'>workFunction</th></tr>";
+                    for (let x in searchResult) {
+                        text += "<tr><td>" + searchResult[x].eid + "</td>";
+                        text += "<td>" + searchResult[x].ename + "</td>";
+                        text += "<td>" + searchResult[x].salary + "</td>";
+                        text += "<td>" + searchResult[x].workfunction + "</td>";
+                        text += "</tr>"
+                    }
+
+                    document.getElementById(tablename).innerHTML = text;
                 }
 
-                document.getElementById(tablename).innerHTML = text;
-            }
+                if (searchResult != null) {
+                    if (searchResult.prepStatementResult != null) {
+                        addResultToTable(searchResult.prepStatementResult, "responseTable-prepState")
+                    } else {
+                        document.getElementById("responseTable-prepState").innerHTML = "";
+                    }
 
-            if (searchResult != null) {
-                if (searchResult.prepStatementResult != null) {
-                    addResultToTable(searchResult.prepStatementResult, "responseTable-prepState")
+                    if (searchResult.criteriaQuery != null) {
+                        addResultToTable(searchResult.criteriaQuery, "responseTable-criteriaQuery")
+                    } else {
+                        document.getElementById("responseTable-criteriaQuery").innerHTML = "";
+                    }
+
+                    if (searchResult.untypedQuery != null) {
+                        addResultToTable(searchResult.untypedQuery, "responseTable-untypedQuery")
+                    } else {
+                        document.getElementById("responseTable-untypedQuery").innerHTML = "";
+                    }
+
+                    if (searchResult.statementResult != null) {
+                        addResultToTable(searchResult.statementResult, "responseTable-statementResult")
+                    } else {
+                        document.getElementById("responseTable-statementResult").innerHTML = "";
+                    }
                 } else {
-                    document.getElementById("responseTable-prepState").innerHTML = "";
+                    document.getElementById("resultParagraph").innerHTML = xmlhttp.responseText;
                 }
-
-                if (searchResult.criteriaQuery != null) {
-                    addResultToTable(searchResult.criteriaQuery, "responseTable-criteriaQuery")
-                } else {
-                    document.getElementById("responseTable-criteriaQuery").innerHTML = "";
-                }
-
-                if (searchResult.untypedQuery != null) {
-                    addResultToTable(searchResult.untypedQuery, "responseTable-untypedQuery")
-                } else {
-                    document.getElementById("responseTable-untypedQuery").innerHTML = "";
-                }
-
-                if (searchResult.statementResult != null) {
-                    addResultToTable(searchResult.statementResult, "responseTable-statementResult")
-                } else {
-                    document.getElementById("responseTable-statementResult").innerHTML = "";
-                }
-            } else {
+            } catch(exception) {
                 document.getElementById("resultParagraph").innerHTML = xmlhttp.responseText;
             }
 
