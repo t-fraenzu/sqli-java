@@ -1,5 +1,8 @@
 # Exercises vulenaribilty java - jakarta EE
 
+Used technologies
+![techstack_overview](doc/techstack_overview.png)
+
 Needed Software:
 
 IDE:  IntelliJ V2022.2
