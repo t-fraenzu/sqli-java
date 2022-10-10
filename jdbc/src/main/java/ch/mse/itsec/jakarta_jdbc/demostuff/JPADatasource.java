@@ -1,4 +1,4 @@
-package ch.mse.itsec.jakarta_jdbc;
+package ch.mse.itsec.jakarta_jdbc.demostuff;
 
 import ch.mse.itsec.jakarta_jdbc.datasource.EntityManagerfactory;
 import ch.mse.itsec.jakarta_jdbc.entities.Employee;

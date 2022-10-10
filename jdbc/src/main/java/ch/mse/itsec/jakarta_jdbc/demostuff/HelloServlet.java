@@ -1,4 +1,4 @@
-package ch.mse.itsec.jakarta_jdbc;
+package ch.mse.itsec.jakarta_jdbc.demostuff;
 
 import java.io.*;
 import javax.servlet.http.*;

@@ -1,4 +1,4 @@
-package ch.mse.itsec.jakarta_jdbc;
+package ch.mse.itsec.jakarta_jdbc.demostuff;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

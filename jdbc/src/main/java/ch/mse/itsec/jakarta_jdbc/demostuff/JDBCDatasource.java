@@ -1,4 +1,4 @@
-package ch.mse.itsec.jakarta_jdbc;
+package ch.mse.itsec.jakarta_jdbc.demostuff;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
