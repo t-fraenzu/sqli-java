@@ -15,7 +15,8 @@
         <h:commandButton value="send text to server" action="protection2"></h:commandButton>
     </h:form>
 
-    <h2>Received Text: #{helloBean.name}</h2>
-    <h2>Bad implementation for text: <h:outputText value="#{helloBean.name}" escape="false"></h:outputText> </h2>
+    <h2>Received Text:</h2> #{helloBean.name} <br />
+    <h2>Bad implementation for text: </h2> <br />
+    <h:outputText value="#{helloBean.name}" escape="false"></h:outputText>
 </h:body>
 </html>
