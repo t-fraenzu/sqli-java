@@ -14,6 +14,16 @@ Wildfly: 26.1.2
     download distribution https://www.wildfly.org/downloads/
 	unzip into /sqli-java/wildfly
 
+create management console user for verify datasource
+
+    pwd -> wildfly/bin
+
+add admin user to access / verify over management console (user / password)
+
+    add-user.bat admin admin
+    
+    http://127.0.0.1:9990/console
+
 start service
 
     sqli-java/wildfly/bin/standalone.bat
@@ -26,26 +36,21 @@ within jboss-cli add jdbcdriver module **(replace driver resource with your own 
 
     module add --name=com.mysql.driver8  --dependencies=javax.api,javax.transaction.api --resources=C:\git\sqli-java\db\mysql\mysql-connector-java-8.0.30.jar
 
-restart wildfly -> create driver
+restart wildfly -> open jobss-cli and create driver
 
+    jboss-cli -c
     /subsystem=datasources/jdbc-driver=mysql/:add(driver-module-name=com.mysql.driver8,driver-name=mysql,driver-class-name=com.mysql.jdbc.Driver)
+
+Wildfly admin console ui allows to verify installation:
+
+![mysqlJdbc_verification](/doc/mysqlJdbc_verify.PNG)
 
 create datasource -> **password & target mysql service ist passed here**
 
     data-source add --jndi-name=java:/MySqli --name=MySqlPool --connection-url=jdbc:mysql://localhost:3307/jakartajdbc --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
-     data-source add --jndi-name=java:/MySqliJpa --name=MySqlPool2 --connection-url=jdbc:mysql://localhost:3307/jakartajpa --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
+    data-source add --jndi-name=java:/MySqliJpa --name=MySqlPool2 --connection-url=jdbc:mysql://localhost:3307/jakartajpa --driver-name=mysql --user-name=jakartaUser --password=jakartaPassword
 
 leave jboss-cli
-create management console user for verify datasource
-    
-    pwd -> wildfly/bin
-
-add admin user to access / verify over management console (user / password)
-
-    add-user.bat admin admin
-    
-    http://127.0.0.1:9990/console
-
 
 ### Installing mysql container
 
