@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class DatasourceContentSetupTest {
 
     @Test
-    void setupDatabase(){
+    void setupDatabase() {
         DataSource ds = new DatasourceFactory().getMySQLDataSource();
 
         Connection con = null;
@@ -24,34 +24,34 @@ public class DatasourceContentSetupTest {
             dropTableIfExists(stmt);
             createNewTable(stmt);
             insertData(stmt);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
     private static void insertData(Statement stmt) throws SQLException {
         var result = stmt.executeUpdate("""
-            -- insert some sample data
-            INSERT INTO Employee (empId, name)
-            VALUES
-                (1, '1Pankaj'),
-                (2, '2David'),
-                (3, '3Otto');
-            """);
+                -- insert some sample data
+                INSERT INTO EmployeeUT (empId, name)
+                VALUES
+                    (1, '1Pankaj'),
+                    (2, '2David'),
+                    (3, '3Otto');
+                """);
     }
 
     private static void createNewTable(Statement stmt) throws SQLException {
         var result5 = stmt.executeUpdate("""
-            CREATE TABLE Employee (
-              empId int(10) unsigned NOT NULL,
-              name varchar(10) DEFAULT NULL,
-              PRIMARY KEY (empId)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8;                
-        """);
+                    CREATE TABLE EmployeeUT (
+                      empId int(10) unsigned NOT NULL,
+                      name varchar(10) DEFAULT NULL,
+                      PRIMARY KEY (empId)
+                    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;                
+                """);
     }
 
     private static void dropTableIfExists(Statement stmt) throws SQLException {
         var result3 = stmt.executeUpdate("""
-            DROP TABLE IF EXISTS Employee""");
+                DROP TABLE IF EXISTS EmployeeUT""");
     }
 }
