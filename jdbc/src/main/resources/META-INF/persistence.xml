@@ -14,4 +14,12 @@
             <property name="hibernate.show_sql"     value="true" />
         </properties>
     </persistence-unit>
+    <persistence-unit name="jakartaUsers">
+        <jta-data-source>java:/MySqliJpaUsers</jta-data-source>
+        <class>ch.mse.itsec.jakarta_jdbc.entities.UserDto</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql"     value="true" />
+        </properties>
+    </persistence-unit>
 </persistence>

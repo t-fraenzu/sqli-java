@@ -11,4 +11,10 @@ public class EntityManagerfactory {
         EntityManager entitymanager = emfactory.createEntityManager();
         return entitymanager;
     }
+
+    public static EntityManager createEntityManager(String persistenceUnitName) {
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory(persistenceUnitName);
+        EntityManager entitymanager = emfactory.createEntityManager();
+        return entitymanager;
+    }
 }
