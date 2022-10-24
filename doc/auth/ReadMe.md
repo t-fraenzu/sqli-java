@@ -42,3 +42,7 @@ HTTP 1 Protocol "basic auth configuration"
 Deployment descriptor (can have webapp server depending details web.xml)
 ![security_defintion](securityDefinition.png)
 
+Other secure way to delegate Authentication & Authorization by using OpenIdConnect / OAuth:
+
+https://auth0.com/docs/quickstart/webapp/java-ee
+ 
